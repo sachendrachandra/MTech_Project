@@ -53,13 +53,16 @@ Model 3 (Transformer Encoder Decoder
 ![Screenshot from 2021-05-30 23-21-55](https://user-images.githubusercontent.com/58558221/120114722-25e9b980-c19e-11eb-90ae-a95e347c1ce4.png)
 
 Model 1 Training  Loss Plot
-![Training_loss_transformer](https://user-images.githubusercontent.com/58558221/120114724-271ae680-c19e-11eb-8c1f-09b78d3aa2a0.png) 
+
+![Training loss](https://user-images.githubusercontent.com/58558221/120114727-27b37d00-c19e-11eb-8189-ad012b1e80e7.png)
 
 Model 2 Training Loss Plot
-![Training_loss_Cubert_only](https://user-images.githubusercontent.com/58558221/120114725-27b37d00-c19e-11eb-9a28-53bc5f37fb23.png) 
+
+![Training_loss_Cubert_only](https://user-images.githubusercontent.com/58558221/120114725-27b37d00-c19e-11eb-9a28-53bc5f37fb23.png)
 
 Model 3 Training Loss Plot
-![Training loss](https://userimages.githubusercontent.com/58558221/120114727-27b37d00-c19e-11eb-8189-ad012b1e80e7.png)
+
+![Training_loss_transformer](https://user-images.githubusercontent.com/58558221/120114724-271ae680-c19e-11eb-8c1f-09b78d3aa2a0.png)
 
 ### Flow of Project:
 
