@@ -23,23 +23,25 @@ For the M.Tech project , the CuBERT encoder trained to capture JAVA contextual e
  - **2nd Part:** The Second part of the project involves Data modeling.
 Here we have to build an Encoder-Decoder architecture for training the processed data in the first part. For comparative purpose, three different model architectures are trained.
 
-a. CuBERT Fused Encoder-Decoder with Transformer
+a. CuBERT Fused Transformer
 
 b. CuBERT Encoder with Transformer Decoder
 
 c. Transformer Encoder-Decoder
 
-### CuBERT Fused Encoder-Decoder with Transformer
-It is first of the two proposed model in the project. The architecture of the model has been taken from the paper “Incorporating BERT into Neural Machine Translation”. The architecture in the Figure below is the architecture used for CuBert Fused model. The paper introduces an architecture where they have fused the output from the last layer of BERT model into the transformer encoder-decoder to obtain better results at Machine translation. The architecture proposed in the project is similar to the one proposed in this paper except for few changes. The authors of the paper have used dropnet technique to regularize the training. In the model proposed, dropnet technique is not used. Instead the output of both CuBERT and transformer encoder and decoder is added and normalized.
+### CuBERT Fused Transformer
+It is first of the two proposed model in the project. The architecture of the model has been taken from the paper “[Incorporating BERT into Neural Machine Translation](https://openreview.net/attachment?id=Hyl7ygStwB&name=original_pdf)”. The architecture in the Figure below is the architecture used for CuBert Fused model. The paper introduces an architecture where they have fused the output from the last layer of BERT model into the transformer encoder-decoder to obtain better results at Machine translation. The architecture proposed in the project is similar to the one proposed in this paper except for few changes. The authors of the paper have used dropnet technique to regularize the training. In the model proposed, dropnet technique is not used. Instead the output of both CuBERT and transformer encoder and decoder is added and normalized.
 
 ![Blank board (1)](https://user-images.githubusercontent.com/58558221/120112382-36e0fd80-c193-11eb-9346-5ad097002ae4.png)
 
 ### CuBERT Encoder with Transformer Decoder
 This is the second of the two model proposed in the project. It involves use of CUBERT as an encoder and Transformer as a decoder. The input test methods vector batches are fed directly into the CuBERT and the output is fed into the decoder multi- head attention layer.
 
-![Cubert_only (1)](https://user-images.githubusercontent.com/58558221/120112310-e9649080-c192-11eb-9bfb-c4756c73db54.png)
+![Cubert_only (2)](https://user-images.githubusercontent.com/58558221/120112799-0732f500-c195-11eb-9ed7-e9c891c9c9cc.png)
 
-
+### Transformer Encoder-Decoder
+The Transformer Encoder-Decoder serves as benchmark for the other two proposed architecture. It is exactly similar as the one proposed in the original pa-
+per  “[Attention is all you need](https://arxiv.org/pdf/1706.03762.pdf)”.
 
 # Flow of Project:
 
