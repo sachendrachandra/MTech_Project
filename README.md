@@ -2,7 +2,7 @@
 
 The project is based on the recent paper titled as "[On Learning Assert Statement for JAVA Unit Test Cases](https://arxiv.org/pdf/2002.05800.pdf) ". The authors of the paper give a novel approach to generate meaningful assert statements for unit test cases called ATLAS (AuTomatic Learning of Assert Statements) which is a Neural Machine Translation (NMT) based approach. Given a test method and a focal method (i.e., the main method under test), ATLAS can predict a meaningful assert statement to assess the correctness of the focal method. Keeping the same end goal in mind, the M.Tech. project aims at giving an alternate approach for doing the similar task. The project aims at building a Transformer Enocder-Decoder architecture to train the available dataset of the previous work making use of [CuBERT](https://arxiv.org/pdf/2001.00059.pdf) encoder by Google-research. Further details are given ahead in the report.
 
-# A short note on CuBERT Encoder: 
+### A short note on CuBERT Encoder: 
 Taking inspiration from success of pre-trained contextual embeddings for natural languages, the authors of the paper ”Learning and evaluating Contextual Embeddings of Source Code”, have presented the first attempt to apply the underlying technique to source code in the form of CuBERT. BERT produces a bidirectional transformer Encoder by training it to predict values of masked tokens, and whether two sentences follow each other in a natural discourse. The pre-trained model can be fine-tuned for downstream tasks and has been shown to produce state-of-the-art results on a number of natural language understanding benchmarks. So, in the paper mentioned above the authors have derived a contextual embedding of
 source code by training a BERT model on source code and called this model CuBERT, short for Code Understanding BERT. Till date CuBERT model has been trained for two languages: Python and JAVA.
 
@@ -43,7 +43,11 @@ This is the second of the two model proposed in the project. It involves use of 
 The Transformer Encoder-Decoder serves as benchmark for the other two proposed architecture. It is exactly similar as the one proposed in the original pa-
 per  “[Attention is all you need](https://arxiv.org/pdf/1706.03762.pdf)”.
 
-# Flow of Project:
+![Screenshot from 2021-05-15 23-35-13](https://user-images.githubusercontent.com/58558221/120114395-a9a2a680-c19c-11eb-826a-c4d3e5aec2a3.png)
+
+### Some results and Trainig Loss Plots
+
+### Flow of Project:
 
  - Step 1 - create the environment as per the requirment.txt file.
  - Step 2 - Convert the Train, Test and Validation data into vectorized form using CuBERT tokenizer and CuBERT vocabulary file. Execute the Vectorize.py file. We also need to specify the path where the vectorized TAPs and corresponding assert statement are stored.
