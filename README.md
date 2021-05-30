@@ -8,6 +8,21 @@ source code by training a BERT model on source code and called this model CuBERT
 
 Dataset Link: [Click here](https://gitlab.com/cawatson/atlas---deep-learning-assert-statements/-/tree/master/Datasets/Raw_Dataset)
 
+Dataset is called Test-Assert Pairs(TAPs)
+
+Test+Focal Method:
+```
+shouldcreateRedMana(){
+ mage.Mana mana = mage.Mana.RedMana (1);
+ "AssertPlaceHolder" ;
+} getRed () { return red ;}
+```
+Assert Statement:
+```
+org.junit.Assert.assertEqual(2, mana.getRed())
+```
+Togethere, (Test+Focal Method) and Assert Statement, the dataset is called Test-Assert Pairs(TAPs). Given a TAP, the trained models generate the meaningful assert statement.
+
 Train Size: 150523
 Validation Size: 18815
 Test Size: 18815
@@ -66,29 +81,36 @@ Model 3 Training Loss Plot
 
 ### Flow of Project:
 
- - Step 1 - create the environment as per the requirment.txt file.
- - Step 2 - Convert the Train, Test and Validation data into vectorized form using CuBERT tokenizer and CuBERT vocabulary file. Execute the Vectorize.py file. We also need to specify the path where the vectorized TAPs and corresponding assert statement are stored.
+ - Step 1 - Create the environment as per the requirment.txt file.
+ - Step 2 - Clone the [CuBERT](https://github.com/google-research/google-research/tree/master/cubert) repository. 
+ - Step 3 - Download the CuBERT pretrained tensorflow model checkpoints from above repository. Convert them into Pytorch checkpoints using huggingface's [this](https://huggingface.co/transformers/converting_tensorflow_models.html#:~:text=You%20can%20convert%20any%20TensorFlow,three%20files%20starting%20with%20bert_model.) documentation.
+ - Step 4 - Convert the Train, Test and Validation data into vectorized form using CuBERT tokenizer and CuBERT vocabulary file. Execute the 'vectorize_data.py' file. We also need to specify the path where the vectorized TAPs and corresponding assert statement are stored.
 ```
-python3 Vectorize.py Path_to_CuBERT_Vocabulary Path_to_input_file Path_to_output_file
+python3 vectorize_data.py Path_to_CuBERT_Vocabulary Path_to_input_file Path_to_output_file
  ```
- We need to execute the statement twice. Once when the Path_to_output_file is path where the vectorized TAPs are saved and second when path is for corresponding assert statements. 
+We need to execute the statement twice. Once when the Path_to_output_file is path where the vectorized TAPs are saved and second when path is for corresponding target assert statements. Further we need to do it for tarin, validation and test set one by one.
  
- - Step 3 - Once the dataset is processed, we need to train the 3 models separately. The train.sh file in each repository train the models of  that specific repository.
+ - Step 5 - Once the dataset is processed, we need to train the 3 models separately. The train.sh file in each repository train the models of  that specific repository. 'train.sh' script contain command to execute the run.py file for training each model. Make sure that the 'run.py' file has path set for the below locations.
+ -->  Path where the vectorized Training and Validation TAPS and assert statement are saved  for processing them into Training and Validation batches.
+ -->  Path to 'SummaryWriter' where we want save the log file that saves the training and validation loss plots
+ -->  Path where the trained model is to be saved.
+ -->  'run.py' file for 'Cubert Fused Transformer' and 'Cubert Encoder with Transformer Decoder model'  has a variable 'PRE_TRAINED_MODEL_CUBERT' which must be set to the location for saved Pytorch CuBERT checkpoints.
 
 **Note:** that in each of the .sh file we need to specify the path where we want to store the trained model and the training plots. Note that each of the model has been trained on GPU cluster with 2 GPUs each of 12 GB using Single Linux Utility Resource Management(SLURM).
 
- - Step 4 - Once all the models have been trained, the models can be used to make predictions for the TAPs in the test set. To obtain the predictions for test set, execute the file translate.py 
+ - Step 6 - Once all the models have been trained, the models can be used to make predictions for the TAPs in the test set. To obtain the predictions for test set, execute the file 'generate.py', present for each of the models seperately. 
  ```
- python3 translate.py Path_to_saved_model Path_to_Test_set Path_where_to_save_the_predictions
+ python3 generate.py Path_where_to_save_the_predictions Path_to_Cubert_Vocabulary Path_to_Test_set Path_to_saved_model  
  ```
+ **Note:** that the 'generate.py' file for 'Cubert Fused Transformer' and 'Cubert Encoder with Transformer Decoder model' has a variable 'PRE_TRAINED_MODEL_CUBERT' which must be set to the location for saved Pytorch CuBERT checkpoints.
 
- - Step 5 - Once we obtain the predictions made by different models, these predictions can be used to evalute the model using metric.py script. metric.py file gives the BLEU score, GLUE-4, GLUE-2 scores and also total number of perfect predictions. 
+ - Step 7 - Once we obtain the predictions made by different models, these predictions can be used to evalute the model using metric.py script. metric.py file gives the BLEU score, GLUE-4, GLUE-2 scores and also total number of perfect predictions. 
  ```
 python3 metric.py Path_to_saved_prediction_file Path_to_actual_assert_statements
  ```
 
- - Step 6 - Now in order to obtain the predicted assert statement using any of the above models, we can use generate_assert.py script.
+ - Step 8 - Now in order to obtain the predicted assert statement using any of the above models, we can use 'assert.py' script.
 ```
-python3 generate_script.py Path_to_saved_model Path_Input_TAP_file Path_where_to_store_the_assert
+python3 generate_script.py Path_to_CuBERT_vocabulary Path_Input_TAP_file Path_where_to_saved_model
 ```
 
