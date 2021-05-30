@@ -1,4 +1,4 @@
-# Alternative approach to Generate Meaningful Assert Statement for Unit Test Cases using Deep Learning
+# Alternative approach to Generate Meaningful Assert Statement for JAVA Unit Test Cases using Deep Learning
 
 The project is based on the recent paper titled as "[On Learning Assert Statement for JAVA Unit Test Cases](https://arxiv.org/pdf/2002.05800.pdf) ". The authors of the paper give a novel approach to generate meaningful assert statements for unit test cases called ATLAS (AuTomatic Learning of Assert Statements) which is a Neural Machine Translation (NMT) based approach. Given a test method and a focal method (i.e., the main method under test), ATLAS can predict a meaningful assert statement to assess the correctness of the focal method. Keeping the same end goal in mind, the M.Tech. project aims at giving an alternate approach for doing the similar task. The project aims at building a Transformer Enocder-Decoder architecture to train the available dataset of the previous work making use of [CuBERT](https://arxiv.org/pdf/2001.00059.pdf) encoder by Google-research. Further details are given ahead in the report.
 
