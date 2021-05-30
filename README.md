@@ -34,7 +34,7 @@ fused with CuBERT Encoder.
 # CuBERT Fused Encoder-Decoder with Transformer
 It is first of the two proposed model in the project. The architecture of the model has been taken from the paper “Incorporating BERT into Neural Machine Translation”. The architecture in the Figure below is the architecture used for CuBert Fused model. The paper introduces an architecture where they have fused the output from the last layer of BERT model into the transformer encoder-decoder to obtain better results at Machine translation. The architecture proposed in the project is similar to the one proposed in this paper except for few changes. The authors of the paper have used dropnet technique to regularize the training. In the model proposed, dropnet technique is not used. Instead the output of both CuBERT and transformer encoder and decoder is added and normalized.
 
-<img src="https://drive.google.com/file/d/1FOwd-cjaFFhOqkrwvO2zfMF6xSAir9aR/view?usp=sharing"/>
+![Cubert_only (1)](https://user-images.githubusercontent.com/58558221/120112310-e9649080-c192-11eb-9bfb-c4756c73db54.png)
 
 
 
