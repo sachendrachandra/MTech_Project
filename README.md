@@ -91,10 +91,14 @@ python3 vectorize_data.py Path_to_CuBERT_Vocabulary Path_to_input_file Path_to_o
 We need to execute the statement twice. Once when the Path_to_output_file is path where the vectorized TAPs are saved and second when path is for corresponding target assert statements. Further we need to do it for tarin, validation and test set one by one.
  
  - Step 5 - Once the dataset is processed, we need to train the 3 models separately. The train.sh file in each repository train the models of  that specific repository. 'train.sh' script contain command to execute the run.py file for training each model. Make sure that the 'run.py' file has path set for the below locations.
+ 
  -->  Path where the vectorized Training and Validation TAPS and assert statement are saved  for processing them into Training and Validation batches.
+ 
  -->  Path to 'SummaryWriter' where we want save the log file that saves the training and validation loss plots
+ 
  -->  Path where the trained model is to be saved.
- -->  'run.py' file for 'Cubert Fused Transformer' and 'Cubert Encoder with Transformer Decoder model'  has a variable 'PRE_TRAINED_MODEL_CUBERT' which must be set to the location for saved Pytorch CuBERT checkpoints.
+ 
+ -->  'run.py' file for 'Cubert Fused Transformer' and 'Cubert Encoder with Transformer Decoder model' has a variable **'PRE_TRAINED_MODEL_CUBERT'** which must be set to the location for saved Pytorch CuBERT checkpoints.
 
 **Note:** that in each of the .sh file we need to specify the path where we want to store the trained model and the training plots. Note that each of the model has been trained on GPU cluster with 2 GPUs each of 12 GB using Single Linux Utility Resource Management(SLURM).
 
